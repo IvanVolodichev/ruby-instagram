@@ -21,7 +21,9 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
+  <nav>
+    <%= link_to "Создать пост", new_post_path %>
+  </nav>
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
