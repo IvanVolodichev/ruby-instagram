@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "home#index"
-  resources :users do
-    resources :followers, only: [ :index, :create, :destroy ]
-    resources :posts do
-      resources :comments, only: [ :index, :create, :destroy ]
-      resources :likes, only: [ :index, :create, :destroy ]
+  resources :users, only: [] do
+    member do
+      post :follow
+      delete :unfollow
+      get :followers
+      get :following
     end
+    resources :posts, only: [ :index ]
+  end
+
+  resources :posts, except: [ :index ] do
+    resources :comments, only: [ :create, :destroy ]
+    resources :likes, only: [ :create, :destroy ]
   end
 end
