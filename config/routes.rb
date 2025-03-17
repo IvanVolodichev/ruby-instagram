@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get "/home", to: "home#index"
+  root to: "home#index"
   resources :users do
     resources :followers, only: [ :index, :create, :destroy ]
     resources :posts do
