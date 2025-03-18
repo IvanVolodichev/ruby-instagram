@@ -23,6 +23,7 @@
   </head>
   <nav>
     <%= link_to "Создать пост", new_post_path %>
+    <%= button_to "Выйти", destroy_user_session_path, method: :delete %>
   </nav>
   <body>
     <p class="notice"><%= notice %></p>

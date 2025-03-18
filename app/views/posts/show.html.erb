@@ -1,0 +1,14 @@
+<h1><%= @post.description %></h1>
+
+<p>Автор: <%= @post.user.email %></p> <!-- Пример отображения email автора -->
+
+<% if @post.images.attached? %>
+  <% @post.images.each do |image| %>
+    <%= image_tag image, width: "200" %>
+  <% end %>
+<% end %>
+
+<%if @post.user_id == current_user.id%>
+  <%= button_to "Удалить", post_path, method: :delete %>
+  <%= link_to "Редактировать", edit_post_path(@post) %>
+<% end %>
