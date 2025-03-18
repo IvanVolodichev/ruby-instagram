@@ -24,6 +24,9 @@
               <%= button_to "Дизлайк", post_like_path(post_id: post.id, id: post.likes.find_by(user_id: current_user.id)), method: :delete%>
             <% end %> 
         </p>
+        <p>
+            <label for="">Комментарии</label> <%=post.comments.count%>
+        </p>
       </div>
     <% end %>
   </div>
