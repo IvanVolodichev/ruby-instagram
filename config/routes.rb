@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   get "/home",  to: "home#index"
   resources :users, only: [] do
     member do
-      post :follow
-      delete :unfollow
-      get :followers
-      get :following
+      post :follow, to: "followers#follow"
+      delete :unfollow, to: "followers#unfollow"
+      get :followers, to: "followers#followers"
+      get :following, to: "followers#following"
     end
     resources :posts, only: [ :index ]
   end

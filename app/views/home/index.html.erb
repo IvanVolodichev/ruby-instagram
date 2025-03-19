@@ -9,10 +9,11 @@
         <% end %>
         <div class="p-4">
           <div class="flex items-center mb-3">
-            <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center mr-2">
-              <span class="text-sm font-semibold text-gray-700"><%= post.user.username[0].upcase %></span>
-            </div>
-            <h5 class="text-sm font-semibold text-gray-800"><%= post.user.username %></h5>
+            <h5 class="text-sm font-semibold text-gray-800">
+              <%= button_to "Подписаться", follow_user_path(id: post.user.id) %>
+              <%= button_to "Отписаться", unfollow_user_path(id: post.user.id), method: :delete%>
+              <%= post.user.followers.count%>
+            </h5>
           </div>
           <p class="text-sm text-gray-600"><%= post.description %></p>
         </div>
