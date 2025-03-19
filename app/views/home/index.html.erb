@@ -26,6 +26,7 @@
         </p>
         <p>
             <label for="">Комментарии</label> <%=post.comments.count%>
+            <%= link_to "Оставить комментарий", post_path(id: post.id) %>
         </p>
       </div>
     <% end %>

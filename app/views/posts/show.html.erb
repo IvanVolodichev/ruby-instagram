@@ -1,6 +1,6 @@
 <h1><%= @post.description %></h1>
 
-<p>Автор: <%= @post.user.email %></p> <!-- Пример отображения email автора -->
+<p>Автор: <%= @post.user.email %></p>
 
 <% if @post.images.attached? %>
   <% @post.images.each do |image| %>
@@ -12,3 +12,36 @@
   <%= button_to "Удалить", post_path, method: :delete %>
   <%= link_to "Редактировать", edit_post_path(@post) %>
 <% end %>
+
+<%= form_with url: post_comments_path(post_id: @post.id)  do |f|%>
+  <%=f.text_field :text, placeholder: "Оставьте комментарий"%>
+  <%=f.submit "Отправить"%>
+<% end %>
+
+
+
+<% unless @post.comments.empty? %>
+
+  <% @post.comments.each do |comment| %>
+   <div>
+    <p>
+      Автор - <%= comment.user.username%>
+    </p>
+     <%=comment.text%>
+   </div>
+
+   
+    <% if current_user.id == comment.user_id %>
+      <%=button_to "Удалить", post_comment_path(post_id: @post.id, id: comment.id), method: :delete%>
+    <% end %>
+   
+  <% end %>
+
+<% else %>
+
+  <p>Список комментариев пуст</p>
+  
+<% end %>
+
+
+
