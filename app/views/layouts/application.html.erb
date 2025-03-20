@@ -25,11 +25,15 @@
     <%= link_to "Создать пост", new_post_path %>
     <%= button_to "Выйти", destroy_user_session_path, method: :delete %>
   </nav>
-  <body>
+  <body class="bg-white max-w-lg mx-auto">
+    <%= render(HeaderComponent.new) %>
+    <hr class="border-gray-200">
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <main>
       <%= yield %>
     </main>
+    <%= render(FooterComponent.new) %>
   </body>
 </html>
