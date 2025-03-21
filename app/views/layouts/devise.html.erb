@@ -9,44 +9,24 @@
     <%= csp_meta_tag %>
 
     <%= yield :head %>
-    
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-  <nav>
-    <%= link_to "Создать пост", new_post_path %>
-    <%= button_to "Выйти", destroy_user_session_path, method: :delete %>
-  </nav>
+ 
   <body class="bg-white max-w-lg mx-auto">
-
-    <%= render(HeaderComponent.new) %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <main>
       <%= yield %>
     </main>
-    <%= render(FooterComponent.new) %>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script>
-      $(document).ready(function(){
-        $('.slider').slick({
-        dots: true,
-        infinite: true,
-        speed: 300,
-        slidesToShow: 1,
-        adaptiveHeight: true
-        });
-      });
-    </script>
   </body>
 </html>
