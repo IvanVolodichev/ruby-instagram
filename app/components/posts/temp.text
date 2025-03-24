@@ -1,0 +1,29 @@
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <% if post.images.attached? %>
+          <% post.images.each do |image| %>
+            <%= image_tag(image, class: "w-full h-64 object-cover") %>
+          <% end %>
+        <% end %>
+        <div class="p-4">
+          <div class="flex items-center mb-3">
+            <h5 class="text-sm font-semibold text-gray-800">
+              <%= button_to "Подписаться", follow_user_path(id: post.user.id) %>
+              <%= button_to "Отписаться", unfollow_user_path(id: post.user.id), method: :delete%>
+              <%= post.user.followers.count%>
+            </h5>
+          </div>
+          <p class="text-sm text-gray-600"><%= post.description %></p>
+        </div>
+        <p>
+            <%=post.likes.count%>
+            <% unless post.likes.find_by(user_id: current_user.id) %>
+              <%= button_to "Лайк", post_likes_path(post.id) %>
+            <%else%>
+              <%= button_to "Дизлайк", post_like_path(post_id: post.id, id: post.likes.find_by(user_id: current_user.id)), method: :delete%>
+            <% end %> 
+        </p>
+        <p>
+            <label for="">Комментарии</label> <%=post.comments.count%>
+            <%= link_to "Оставить комментарий", post_path(id: post.id) %>
+        </p>
+</div>

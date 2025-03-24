@@ -1,4 +1,4 @@
-<header class="bg-white flex items-center justify-between p-4">
+<header class="bg-white flex items-center justify-between p-4 ">
     <a href="/home">
         <svg aria-label="Instagram" class="_ab6-" color="#000" fill="#000" height="29" role="img"
             viewBox="32 4 113 32" width="103">
@@ -7,6 +7,7 @@
                 fill="currentColor" fill-rule="evenodd"></path>
         </svg>
     </a>
+    <%= button_to "Выйти", destroy_user_session_path, method: :delete, class: "cursor-pointer font-semibold text-red-600" %>
 </header>
 
 <hr class="border-gray-200">

@@ -1,24 +1,23 @@
 class LikesController < ApplicationController
-    def create
-        @like = current_user.likes.new(like_params)
-        if @like.save
-          redirect_to root_path
-        else
-          puts "Something went wrong"
-        end
-    end
+  before_action :set_post
 
-    def destroy
-        @like = Like.find(params[:id])
-        if @like.destroy
-          redirect_to root_path
-        else
-          puts "Something went wrong"
-        end
+  def create
+    @post.likes.create(user_id: current_user.id)
+    respond_to do |format|
+      format.json { render json: { liked: true, likes_count: @post.likes.count } }
     end
+  end
 
-    private
-    def like_params
-        params.permit(:post_id)
+  def destroy
+    like = @post.likes.find_by(user_id: current_user.id)
+    like.destroy if like
+    respond_to do |format|
+      format.json { render json: { liked: false, likes_count: @post.likes.count } }
     end
+  end
+
+  private
+  def set_post
+    @post = Post.find(params[:post_id])
+  end
 end

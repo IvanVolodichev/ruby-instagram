@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
     if @post.save
-      redirect_to @post, notice: "Post was successfully created."
+      redirect_to @post, notice: "Пост был успешно создан!"
     else
       render :new
     end
@@ -23,21 +23,17 @@ class PostsController < ApplicationController
 
   def update
       if @post.update(post_params)
-        flash[:success] = "Object was successfully updated"
-        redirect_to @post
+        redirect_to @post, notice: "Пост был успешно обновлён!"
       else
-        flash[:error] = "Something went wrong"
-        render "edit"
+        redirect_to @post, alert: "Произошла ошибка при обновлении"
       end
   end
 
   def destroy
     if @post.destroy
-      flash[:success] = "Object was successfully deleted."
-      redirect_to root_path
+      redirect_to root_path, notice: "Пост был успешно удалён!"
     else
-      flash[:error] = "Something went wrong"
-      redirect_to @post
+      redirect_to root_path, alert: "Произошла ошибка при удалении"
     end
   end
 
@@ -49,8 +45,7 @@ class PostsController < ApplicationController
 
   def check_owner
     if @post.user_id != current_user.id
-      flash[:error] = "У вас нет прав на удаление этой фотографии"
-      redirect_to @post
+      redirect_to @post, alert: "Вы не являетесь владельцем данного поста"
     end
   end
 

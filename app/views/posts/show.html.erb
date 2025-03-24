@@ -1,47 +1,40 @@
-<h1><%= @post.description %></h1>
+<%= render(Posts::CardComponent.new(@post)) %>
 
-<p>Автор: <%= @post.user.email %></p>
-
-<% if @post.images.attached? %>
-  <% @post.images.each do |image| %>
-    <%= image_tag image, width: "200" %>
-  <% end %>
+<%= form_with url: post_comments_path(post_id: @post.id), class: "mb-4" do |f| %>
+  <div class="flex items-center space-x-2">
+    <%= f.text_field :text, autofocus: true, placeholder: "Оставьте комментарий...", class: "flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" %>
+    <%= f.submit "Отправить", class: "px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" %>
+  </div>
 <% end %>
-
-<%if @post.user_id == current_user.id%>
-  <%= button_to "Удалить", post_path, method: :delete %>
-  <%= link_to "Редактировать", edit_post_path(@post) %>
-<% end %>
-
-<%= form_with url: post_comments_path(post_id: @post.id)  do |f|%>
-  <%=f.text_field :text, placeholder: "Оставьте комментарий"%>
-  <%=f.submit "Отправить"%>
-<% end %>
-
-
 
 <% unless @post.comments.empty? %>
-
-  <% @post.comments.each do |comment| %>
-   <div>
-    <p>
-      Автор - <%= comment.user.username%>
-    </p>
-     <%=comment.text%>
-   </div>
-
-   
-    <% if current_user.id == comment.user_id %>
-      <%=button_to "Удалить", post_comment_path(post_id: @post.id, id: comment.id), method: :delete%>
+  <div class="space-y-4">
+    <% @post.comments.each do |comment| %>
+      <div class="bg-white p-4 rounded-lg shadow-sm">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-2">
+            <%= image_tag(comment.post.user.avatar_url.present? ? comment.user.avatar_url : 'default_avatar.png', class: "w-10 rounded-full") %>
+            <p class="font-semibold text-sm"><%= comment.user.username %></p>
+          </div>
+          <% if current_user.id == comment.user_id %>
+            <%= button_to "Удалить", post_comment_path(post_id: @post.id, id: comment.id), method: :delete, class: "text-red-500 text-sm hover:text-red-700" %>
+          <% end %>
+        </div>
+        <p class="mt-2 text-sm text-gray-700 break-words whitespace-normal"><%= comment.text %></p>
+      </div>
     <% end %>
-   
-  <% end %>
-
+  </div>
 <% else %>
-
-  <p>Список комментариев пуст</p>
-  
+  <p class="text-gray-500 text-center py-4">Список комментариев пуст</p>
 <% end %>
+
+<script>
+    popupMenu = document.getElementById('popup-menu');
+
+    document.getElementById('more-options').addEventListener('click', function() {
+        popupMenu.classList.toggle('hidden');
+    });
+</script>
 
 
 

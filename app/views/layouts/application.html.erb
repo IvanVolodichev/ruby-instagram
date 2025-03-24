@@ -21,32 +21,84 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-  <nav>
-    <%= link_to "Создать пост", new_post_path %>
+  <%# 
+  
+    <nav>
     <%= button_to "Выйти", destroy_user_session_path, method: :delete %>
-  </nav>
-  <body class="bg-white max-w-lg mx-auto">
+    <%# </nav> %>
+  
+
+
+  <body class="bg-white max-w-lg mx-auto h-screen flex flex-col">
 
     <%= render(HeaderComponent.new) %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <main>
+
+    <% if notice.present? || alert.present? %>
+      <div class="fixed top-0 right-0 z-50 p-2 font-semibold">
+        <% if notice.present? %>
+          <div class="notice px-8 py-2 text-white bg-green-600 rounded-lg"><%= notice %></div>
+        <% end %>
+        <% if alert.present? %>
+          <div class="alert px-8 py-2 text-white bg-red-600 rounded-lg mt-2"><%= alert %></div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <main class="flex-grow flex-col items-center justify-center">
       <%= yield %>
     </main>
+
     <%= render(FooterComponent.new) %>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
     <script>
       $(document).ready(function(){
         $('.slider').slick({
-        dots: true,
-        infinite: true,
-        speed: 300,
-        slidesToShow: 1,
-        adaptiveHeight: true
+          dots: true,
+          infinite: true,
+          speed: 300,
+          slidesToShow: 1,
+          adaptiveHeight: true
         });
       });
     </script>
-  </body>
+
+    <script>
+      async function toggleLike(postId, isLiked){
+        const url = isLiked ? `/posts/${postId}/unlike` : `/posts/${postId}/like`;
+        const method = isLiked ? 'DELETE' : 'POST';
+
+        console.log(url, method)
+
+        try {
+          const response = await fetch(url, {
+            method: method,
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+            },
+            credentials: 'same-origin'
+          });
+
+          const data = await response.json();
+
+          // Обновляем счетчик лайков
+          document.getElementById(`like-count-${postId}`).innerText = `${data.likes_count}`;
+
+          const likeButton = document.getElementById(`like-button-${postId}`);
+          const svg = document.getElementById(`svg-button-${postId}`);
+
+          likeButton.setAttribute('onclick', `toggleLike(${postId}, ${data.liked})`);
+          color = data.liked ? "#ff0000" : "#000"
+          svg.setAttribute('fill', color);
+
+        } catch (error) {
+      }
+      }
+    </script>
+
+</body>
 </html>

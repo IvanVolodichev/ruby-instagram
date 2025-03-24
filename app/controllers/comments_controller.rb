@@ -5,17 +5,17 @@ class CommentsController < ApplicationController
     @comment  = current_user.comments.new(comment_params)
 
     if @comment.save
-      redirect_to post_path(id: comment_params[:post_id])
+      redirect_to post_path(id: comment_params[:post_id]), notice: "Комментарий успешно добавлен"
     else
-      redirect_to @comment.post
+      redirect_to post_path(id: comment_params[:post_id]), alert: "Произошла ошибка при добавлении комментария"
     end
   end
 
   def destroy
     if @comment.destroy
-      redirect_to post_path(id: comment_params[:post_id])
+      redirect_to post_path(id: comment_params[:post_id]), notice: "Комментарий был удалён"
     else
-      render "show"
+      redirect_to post_path(id: comment_params[:post_id]), alert: "Произошла ошибка при удалении комментария"
     end
   end
 

@@ -14,4 +14,8 @@ class User < ApplicationRecord
   # получить список подписок
   has_many :following_relationships, class_name: "Follower", foreign_key: "follower_id"
   has_many :following, through: :following_relationships, source: :following
+
+  def liked?(post)
+    post.likes.present?
+  end
 end

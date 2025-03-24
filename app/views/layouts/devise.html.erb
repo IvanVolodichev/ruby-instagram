@@ -22,10 +22,21 @@
     <%= javascript_importmap_tags %>
   </head>
  
-  <body class="bg-white max-w-lg mx-auto">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <main>
+  <body class="bg-stone-50 max-w-lg mx-auto h-screen">
+    
+    <% if notice.present? || alert.present? %>
+      <div class="fixed top-0 right-0 z-50 p-2 font-semibold">
+        <% if notice.present? %>
+          <div class="notice px-8 py-2 text-white bg-green-600 rounded-lg"><%= notice %></div>
+        <% end %>
+        <% if alert.present? %>
+          <div class="alert px-8 py-2 text-white bg-red-600 rounded-lg mt-2"><%= alert %></div>
+        <% end %>
+      </div>
+    <% end %>
+    
+    
+    <main class="flex flex-col items-center h-full justify-center"> 
       <%= yield %>
     </main>
   </body>
