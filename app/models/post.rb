@@ -3,5 +3,4 @@ class Post < ApplicationRecord
   has_many_attached :images
   has_many :likes
   has_many :comments
-
 end

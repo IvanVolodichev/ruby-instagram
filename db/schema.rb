@@ -79,15 +79,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_18_111712) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username", limit: 50, null: false
-    t.string "email", limit: 100, null: false
+    t.string "username", null: false
+    t.string "email", null: false
     t.string "encrypted_password", null: false
-    t.string "avatar_url", limit: 255
-    t.text "bio", limit: 500
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["username"], name: "index_users_on_username", unique: true
+    t.text "bio"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

@@ -2,6 +2,11 @@ class PostsController < ApplicationController
   before_action :set_post, only: [ :edit, :update, :show, :destroy ]
   before_action :check_owner, only: [ :edit, :update, :destroy ]
 
+  def index
+    @user = User.find(params[:user_id])
+    @posts = Post.where(user_id: @user.id).order(created_at: :desc)
+  end
+
   def show
   end
 

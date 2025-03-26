@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :likes
   has_many :comments
+  has_one_attached :avatar
 
   # получить список подписчиков
   has_many :follower_relationships, class_name: "Follower", foreign_key: "following_id"
@@ -16,6 +17,6 @@ class User < ApplicationRecord
   has_many :following, through: :following_relationships, source: :following
 
   def liked?(post)
-    post.likes.present?
+    post.likes.where(user_id: self.id).present?
   end
 end

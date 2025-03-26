@@ -13,8 +13,12 @@
       <div class="bg-white p-4 rounded-lg shadow-sm">
         <div class="flex items-center justify-between">
           <div class="flex items-center space-x-2">
-            <%= image_tag(comment.post.user.avatar_url.present? ? comment.user.avatar_url : 'default_avatar.png', class: "w-10 rounded-full") %>
-            <p class="font-semibold text-sm"><%= comment.user.username %></p>
+            <%= image_tag(comment.user.avatar.present? ? comment.user.avatar : 'default_avatar.png', class: "w-10 rounded-full") %>
+            <p class="font-semibold text-sm">
+              <%= link_to user_posts_path(user_id: comment.user.id) do %>
+                <%= comment.user.username %>
+                <%end%>
+            </p>
           </div>
           <% if current_user.id == comment.user_id %>
             <%= button_to "Удалить", post_comment_path(post_id: @post.id, id: comment.id), method: :delete, class: "text-red-500 text-sm hover:text-red-700" %>
