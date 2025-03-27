@@ -9,6 +9,10 @@
     <%= csp_meta_tag %>
 
     <%= yield :head %>
+
+    <link rel="preload" href="https://code.jquery.com/jquery-3.6.0.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js" as="script">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" as="script">
     
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
@@ -21,6 +25,7 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
 
+    <%# Лайки асинхронно %>
     <script defer>
       async function toggleLike(postId, isLiked){
         const url = isLiked ? `/posts/${postId}/unlike` : `/posts/${postId}/like`;
@@ -55,26 +60,12 @@
       }
       }
     </script>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
   </head>
 
   <body class="bg-white max-w-lg mx-auto h-screen flex flex-col">
-
     <%= render(HeaderComponent.new) %>
 
-    <% if notice.present? || alert.present? %>
-      <div class="fixed top-0 right-0 z-50 p-2 font-semibold">
-        <% if notice.present? %>
-          <div class="notice px-8 py-2 text-white bg-green-600 rounded-lg"><%= notice %></div>
-        <% end %>
-        <% if alert.present? %>
-          <div class="alert px-8 py-2 text-white bg-red-600 rounded-lg mt-2"><%= alert %></div>
-        <% end %>
-      </div>
-    <% end %>
+    <%= render(MessageComponent.new(notice: notice, alert: alert)) %>
 
     <main class="flex-grow flex-col items-center justify-center">
       <%= yield %>
@@ -82,19 +73,23 @@
 
     <%= render(FooterComponent.new) %>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js"></script>
     <script>
       $(document).ready(function(){
-        $('.slider').slick({
-          dots: true,
-          infinite: true,
-          speed: 300,
-          slidesToShow: 1,
-          adaptiveHeight: true
+        if ($('.slider').length) {
+          $('.slider').imagesLoaded().always(function() {
+            $('.slider').slick({
+              dots: true,
+              infinite: true,
+              speed: 300,
+              slidesToShow: 1,
+              adaptiveHeight: true
+            });
+          });
+          }
         });
-      });
     </script>
-
-    
-
-</body>
+  </body>
 </html>

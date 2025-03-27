@@ -24,11 +24,11 @@
             </div>
         <%end%>
     </div>
-    <div class="pt-3">
+    <div class="pt-3 ">
         <div class="slider">
             <% @post.images.each do |image| %>
                 <div>
-                    <%= image_tag(image, class: "rounded") %>
+                    <%= image_tag(image, class: "rounded w-full max-h-96", loading: "lazy") %>
                 </div>
             <% end %>
         </div>

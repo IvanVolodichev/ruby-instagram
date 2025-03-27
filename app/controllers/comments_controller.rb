@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to post_path(id: comment_params[:post_id]), notice: "Комментарий успешно добавлен"
     else
-      redirect_to post_path(id: comment_params[:post_id]), alert: "Произошла ошибка при добавлении комментария"
+      redirect_to post_path(id: comment_params[:post_id]), flash[:errors] = @comment.errors
     end
   end
 

@@ -1,0 +1,19 @@
+  <div class="fixed top-0 right-0 z-50 p-2 font-semibold">
+    <% if @notice.present? %>
+      <div class="notice px-8 py-2 text-white bg-green-600 rounded-lg"><%= @notice %></div>
+    <% end %>
+    
+    <% if @alert.present? %>
+      <div class="alert px-8 py-2 text-white bg-red-600 rounded-lg mt-2"><%= @alert %></div>
+    <% end %>
+    
+    <% if @errors.present? %>
+      <% @errors.each do |field, messages| %>
+        <% Array(messages).each do |message| %>
+          <div class="alert px-8 py-2 text-white bg-red-600 rounded-lg mt-2">
+            <%= "#{field.to_s.humanize} #{message}" %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>

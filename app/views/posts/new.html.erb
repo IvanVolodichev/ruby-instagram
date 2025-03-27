@@ -1,3 +1,7 @@
+<% if @post.errors.any? %>
+  <%= render(MessageComponent.new(errors: @post.errors.messages))%>
+<% end %>
+
 <div class="h-full px-3 grid place-items-center">
   <%= form_with(model: @post, class: "space-y-6 w-full") do |f| %>
     <!-- Поле для описания -->
