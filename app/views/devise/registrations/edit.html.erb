@@ -1,3 +1,5 @@
+<% content_for :title, "Редактирование профиля" %>
+
 <div class="max-w-md mx-auto bg-white p-4 rounded-lg shadow-sm">
   <h2 class="text-xl font-medium mb-4 text-center">Редактировать профиль</h2>
 
@@ -9,7 +11,7 @@
       <!-- Аватар -->
       <div class="flex-shrink-0">
         <div class="w-16 h-16 rounded-full overflow-hidden border border-gray-200">
-          <% if resource.avatar.attached? %>
+          <% if resource.avatar.attached? && resource.avatar.persisted? %>
             <%= image_tag resource.avatar, class: "w-full h-full object-cover" %>
           <% else %>
             <div class="w-full h-full bg-gray-100 flex items-center justify-center">

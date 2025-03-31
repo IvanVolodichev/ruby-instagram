@@ -1,3 +1,5 @@
+<% content_for :title, "Создание поста" %>
+
 <% if @post.errors.any? %>
   <%= render(MessageComponent.new(errors: @post.errors.messages))%>
 <% end %>

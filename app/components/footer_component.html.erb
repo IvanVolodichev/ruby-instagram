@@ -49,7 +49,7 @@
                     fill-rule="evenodd"></path>
             </svg>
             <a title="Profile" href="<%= user_posts_path(user_id: helpers.current_user.id)%>" >
-                <%= image_tag(helpers.current_user.avatar.present? ? helpers.current_user.avatar : 'default_avatar.png', class: "w-6 rounded-full") %>
+                <%= image_tag(helpers.current_user.avatar.present? ? helpers.current_user.avatar : 'default_avatar.png', class: "w-6 h-6 rounded-full") %>
             </a>
         </div>
     </footer>

@@ -50,7 +50,7 @@ class PostsController < ApplicationController
 
   def check_owner
     if @post.user_id != current_user.id
-      redirect_to @post, alert: "Вы не являетесь владельцем данного поста", status: :forbidden
+      redirect_to @post, alert: "Вы не являетесь владельцем данного поста"
     end
   end
 

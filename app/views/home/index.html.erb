@@ -1,3 +1,5 @@
+<% content_for :title, "Лента" %>
+
 <% @posts.each do |post| %>
   <%= render(Posts::CardComponent.new(post)) %>
 <% end %>

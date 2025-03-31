@@ -78,18 +78,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js"></script>
     <script>
       $(document).ready(function(){
-        if ($('.slider').length) {
-          $('.slider').imagesLoaded().always(function() {
-            $('.slider').slick({
-              dots: true,
-              infinite: true,
-              speed: 300,
-              slidesToShow: 1,
-              adaptiveHeight: true
-            });
+        $('.slider').imagesLoaded().always(function() {
+          $('.slider').slick({
+            dots: true,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 1,
+            adaptiveHeight: true
           });
-          }
         });
+      });
     </script>
   </body>
 </html>

@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
   before_action :set_comment, :check_owner, only: [ :destroy ]
 
   def create
-    puts params
     @comment  = current_user.comments.new(comment_params)
 
     if @comment.save
