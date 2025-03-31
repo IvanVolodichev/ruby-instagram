@@ -25,6 +25,10 @@
   <body class="bg-stone-50 max-w-lg mx-auto h-screen">
     <%= render(MessageComponent.new(notice: notice, alert: alert)) %>
 
+    <% if @user.errors.any? %>
+      <%= render(MessageComponent.new(errors: @user.errors.messages))%>
+    <% end %>
+
     <main class="flex flex-col items-center h-full justify-center"> 
       <%= yield %>
     </main>

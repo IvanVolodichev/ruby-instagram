@@ -2,12 +2,13 @@ class CommentsController < ApplicationController
   before_action :set_comment, :check_owner, only: [ :destroy ]
 
   def create
+    puts params
     @comment  = current_user.comments.new(comment_params)
 
     if @comment.save
       redirect_to post_path(id: comment_params[:post_id]), notice: "Комментарий успешно добавлен"
     else
-      redirect_to post_path(id: comment_params[:post_id]), flash[:errors] = @comment.errors
+      redirect_to post_path(id: comment_params[:post_id]), alert: "Произошла ошибка при добавлении комментария"
     end
   end
 

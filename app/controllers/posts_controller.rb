@@ -30,7 +30,7 @@ class PostsController < ApplicationController
       if @post.update(post_params)
         redirect_to @post, notice: "Пост был успешно обновлён!"
       else
-        redirect_to @post, alert: "Произошла ошибка при обновлении"
+        render "edit", status: :unprocessable_entity
       end
   end
 
@@ -50,7 +50,7 @@ class PostsController < ApplicationController
 
   def check_owner
     if @post.user_id != current_user.id
-      redirect_to @post, alert: "Вы не являетесь владельцем данного поста"
+      redirect_to @post, alert: "Вы не являетесь владельцем данного поста", status: :forbidden
     end
   end
 

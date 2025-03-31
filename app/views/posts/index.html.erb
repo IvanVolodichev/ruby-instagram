@@ -45,11 +45,11 @@
             <%else%>
 
                 <% if @user.followers.where(id: current_user.id).present? %>
-                    <%= button_to unfollow_user_path(id: @user.id), class: "bg-slate-500 hover:bg-slate-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors w-full", method: :delete do%>
+                    <%= button_to user_unfollow_path(user_id: @user.id), class: "bg-slate-500 hover:bg-slate-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors w-full", method: :delete do%>
                         Отписаться
                     <%end%>
                 <% else %>
-                    <%= button_to follow_user_path(id: @user.id), class: "bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors w-full" do%>
+                    <%= button_to user_follow_path(user_id: @user.id), class: "bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors w-full" do%>
                         Подписаться
                     <%end%>
                 <% end %>

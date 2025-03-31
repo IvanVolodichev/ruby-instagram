@@ -3,9 +3,11 @@ class User < ApplicationRecord
            :registerable,
            :validatable
 
-  has_many :posts
-  has_many :likes
-  has_many :comments
+  validates :username, presence: true, uniqueness: true, length: { minimum: 3, maximum: 75 }
+
+  has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_one_attached :avatar
 
   # получить список подписчиков

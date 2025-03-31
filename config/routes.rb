@@ -1,14 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
+
   root to: redirect("/home")
   get "/home",  to: "home#index"
+
   resources :users, only: [] do
-    member do
-      post :follow, to: "followers#follow"
-      delete :unfollow, to: "followers#unfollow"
-      get :followers, to: "followers#followers"
-      get :following, to: "followers#following"
-    end
+    post :follow, to: "followers#follow"
+    delete :unfollow, to: "followers#unfollow"
     resources :posts, only: [ :index ]
   end
 

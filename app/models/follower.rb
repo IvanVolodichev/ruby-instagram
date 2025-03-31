@@ -1,4 +1,6 @@
 class Follower < ApplicationRecord
-    belongs_to :follower, class_name: "User"  # тот, кто подписывается
-    belongs_to :following, class_name: "User" # тот, на кого подписываются
+    belongs_to :follower, class_name: "User"
+    belongs_to :following, class_name: "User"
+
+    validates :follower_id, uniqueness: { scope: :following_id, message: "Вы уже подписаны на этого пользователя" }
 end
