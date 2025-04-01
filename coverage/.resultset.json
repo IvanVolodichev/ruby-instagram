@@ -43,65 +43,63 @@
           null
         ]
       },
-      "/home/ivan-volodichev/final-project/app/components/message_component.rb": {
+      "/home/ivan-volodichev/final-project/app/models/comment.rb": {
         "lines": [
-          null,
-          null,
           1,
           1,
-          0,
-          0,
-          0,
+          1,
           null,
+          1,
           null
         ]
       },
-      "/home/ivan-volodichev/final-project/app/controllers/followers_controller.rb": {
+      "/home/ivan-volodichev/final-project/app/models/application_record.rb": {
         "lines": [
           1,
           1,
+          null
+        ]
+      },
+      "/home/ivan-volodichev/final-project/app/models/follower.rb": {
+        "lines": [
+          1,
+          1,
+          1,
           null,
           1,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          null,
-          null,
           null,
           1,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          null,
-          null,
           null,
           1,
-          0,
-          0,
+          null,
+          1,
+          10,
+          1,
           null,
           null,
           null
         ]
       },
-      "/home/ivan-volodichev/final-project/app/controllers/application_controller.rb": {
+      "/home/ivan-volodichev/final-project/app/models/like.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          1,
+          null
+        ]
+      },
+      "/home/ivan-volodichev/final-project/app/models/post.rb": {
         "lines": [
           1,
           1,
           1,
           1,
-          null,
           1,
           null,
           1,
-          0,
-          0,
-          null,
+          1,
           null
         ]
       },
@@ -113,13 +111,10 @@
           null,
           null,
           1,
-          null,
-          1,
-          1,
-          1,
           1,
           null,
-          null,
+          1,
+          1,
           1,
           1,
           null,
@@ -127,16 +122,13 @@
           1,
           1,
           null,
-          1,
-          0,
           null,
-          null
-        ]
-      },
-      "/home/ivan-volodichev/final-project/app/models/application_record.rb": {
-        "lines": [
           1,
           1,
+          null,
+          1,
+          2,
+          null,
           null
         ]
       },
@@ -158,9 +150,40 @@
         ],
         "branches": {}
       },
+      "/home/ivan-volodichev/final-project/app/components/message_component.rb": {
+        "lines": [
+          null,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
       "/home/ivan-volodichev/final-project/app/components/posts/card_component.rb": {
         "lines": [
           null,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/home/ivan-volodichev/final-project/app/controllers/application_controller.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
           null,
           0,
           0,
@@ -177,7 +200,6 @@
           null,
           0,
           0,
-          0,
           null,
           0,
           0,
@@ -207,6 +229,40 @@
           0,
           0,
           null,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/home/ivan-volodichev/final-project/app/controllers/followers_controller.rb": {
+        "lines": [
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
           0,
           0,
           0,
@@ -337,55 +393,8 @@
           0
         ],
         "branches": {}
-      },
-      "/home/ivan-volodichev/final-project/app/models/comment.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          null,
-          0,
-          0
-        ],
-        "branches": {}
-      },
-      "/home/ivan-volodichev/final-project/app/models/follower.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          null,
-          0,
-          0
-        ],
-        "branches": {}
-      },
-      "/home/ivan-volodichev/final-project/app/models/like.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          null,
-          0,
-          0
-        ],
-        "branches": {}
-      },
-      "/home/ivan-volodichev/final-project/app/models/post.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0
-        ],
-        "branches": {}
       }
     },
-    "timestamp": 1743429234
+    "timestamp": 1743512500
   }
 }

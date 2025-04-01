@@ -4,6 +4,7 @@ class User < ApplicationRecord
            :validatable
 
   validates :username, presence: true, uniqueness: true, length: { minimum: 3, maximum: 75 }
+  validates :avatar, content_type: [ "image/png", "image/jpeg" ]
 
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
