@@ -22,7 +22,7 @@ RSpec.describe Comment, type: :model do
     	end
 
 			it "without target post" do
-				comment.user_id = nil
+				comment.post_id = nil
         expect(comment).not_to be_valid
     	end
 		end

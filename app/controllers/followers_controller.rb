@@ -14,7 +14,8 @@ class FollowersController < ApplicationController
   def unfollow
     @follow = Follower.find_by(follower_id: current_user.id, following_id: params[:user_id])
 
-    if @follow.destroy
+    if @follow
+      @follow.destroy
       redirect_to user_posts_path(user_id: params[:user_id]), notice: "Вы успешно отписались"
     else
       redirect_to user_posts_path(user_id: params[:user_id]), alert: "Что-то пошло не так при отписке"

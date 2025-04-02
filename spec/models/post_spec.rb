@@ -17,9 +17,14 @@ RSpec.describe Post, type: :model do
         post.description = nil
         expect(post).not_to be_valid
       end
-  
+
       it 'is invalid without images' do
         post.images = nil
+        expect(post).not_to be_valid
+      end
+
+      it 'is invalid without user' do
+        post.user_id = nil
         expect(post).not_to be_valid
       end
 
@@ -41,9 +46,5 @@ RSpec.describe Post, type: :model do
         expect(post).not_to be_valid
       end
     end
-    
-    
-
-    
   end
 end
